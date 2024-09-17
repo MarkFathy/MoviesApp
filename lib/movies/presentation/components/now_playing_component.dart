@@ -5,9 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:movies/core/utils/enums.dart';
 import 'package:movies/movies/presentation/controllers/movies_bloc.dart';
-
 import '../../../core/network/api_const.dart';
-import '../screens/dummy.dart';
 
 class NowPlayingComponent extends StatelessWidget {
   const NowPlayingComponent({super.key});

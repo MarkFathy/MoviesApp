@@ -16,6 +16,7 @@ class ServicesLocator{
     getIt.registerFactory(() => MoviesBloc(
       getIt<GetNowPlayingMoviesUseCase>(),
       getIt<GetPopularMoviesUseCase>(),
+      getIt<GetTopRatedMoviesUseCase>(),
     ));
 
     //UseCases
