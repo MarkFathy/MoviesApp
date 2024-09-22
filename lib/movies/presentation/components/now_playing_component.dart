@@ -6,6 +6,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:movies/core/utils/enums.dart';
 import 'package:movies/movies/presentation/controllers/movies_bloc.dart';
 import '../../../core/network/api_const.dart';
+import '../screens/movie_detail_screen.dart';
 
 class NowPlayingComponent extends StatelessWidget {
   const NowPlayingComponent({super.key});
@@ -13,7 +14,10 @@ class NowPlayingComponent extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<MoviesBloc, MoviesState>(
+      buildWhen: (previous, current) =>
+      previous.nowPlayingState !=current.nowPlayingState,
       builder: (context, state) {
+        print("###Now Playing  bloc###");
 
         switch(state.nowPlayingState) {
 
@@ -39,7 +43,13 @@ class NowPlayingComponent extends StatelessWidget {
                   return GestureDetector(
                     key: const Key('openMovieMinimalDetail'),
                     onTap: () {
-                      /// TODO : NAVIGATE TO MOVIE DETAILS
+                      Navigator.push(
+                          context,
+                        MaterialPageRoute(
+                          builder: (BuildContext context) =>
+                              MovieDetailScreen(id: item.id),
+                        ),
+                      );
                     },
                     child: Stack(
                       children: [

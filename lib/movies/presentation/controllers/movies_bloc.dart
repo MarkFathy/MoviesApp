@@ -1,5 +1,6 @@
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
+import 'package:movies/core/usecase/base_usecase.dart';
 import 'package:movies/core/utils/enums.dart';
 import 'package:movies/movies/domain/usecases/get_now_playing_movies_usecase.dart';
 
@@ -16,7 +17,7 @@ class MoviesBloc extends Bloc<MoviesEvent, MoviesState> {
 
   MoviesBloc(this.getNowPlayingMoviesUseCase, this.getPopularMoviesUseCase, this.getTopRatedMoviesUseCase) : super(const MoviesState()) {
     on<GetNowPlayingMoviesEvent>((event, emit) async {
-      final result = await getNowPlayingMoviesUseCase.execute();
+      final result = await getNowPlayingMoviesUseCase(const NoParams());
 
       result.fold(
             (l) {
@@ -35,7 +36,7 @@ class MoviesBloc extends Bloc<MoviesEvent, MoviesState> {
     });
 
     on<GetPopularMoviesEvent>((event, emit) async {
-      final result = await getPopularMoviesUseCase.execute();
+      final result = await getPopularMoviesUseCase(const NoParams());
 
       result.fold(
             (l) {
@@ -54,7 +55,7 @@ class MoviesBloc extends Bloc<MoviesEvent, MoviesState> {
     });
 
     on<GetTopRatedMoviesEvent>((event, emit) async {
-      final result = await getTopRatedMoviesUseCase.execute();
+      final result =await getTopRatedMoviesUseCase(const NoParams());
 
       result.fold(
             (l) {

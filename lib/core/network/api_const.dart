@@ -10,6 +10,8 @@ class ApiConst{
  static const topRatedMoviesPath='$baseUrl/movie/top_rated?api_key=$apiKey';
  static const baseImageUrl='https://image.tmdb.org/t/p/w500';
  static imageUrl(String path)=> '$baseImageUrl$path';
+ static movieDetailsPath(int movieId)=> '$baseUrl/movie/$movieId?api_key=$apiKey';
+ static moviesRecommendationPath(int movieId)=> '$baseUrl/movie/$movieId/recommendations?api_key=$apiKey';
 
 
 

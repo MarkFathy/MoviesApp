@@ -14,7 +14,11 @@ class PopularMoviesComponent extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<MoviesBloc, MoviesState>(
+      buildWhen: (previous, current) =>
+      previous.popularMoviesState != current.popularMoviesState,
       builder: (context, state) {
+        print("###pobular movies bloc###");
+
         switch (state.popularMoviesState) {
           case RequestState.loading:
             return const ShimmerPlaceholder();

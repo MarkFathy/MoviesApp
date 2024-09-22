@@ -16,7 +16,10 @@ class TopRatedComponent extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<MoviesBloc, MoviesState>(
+      buildWhen: (previous, current) =>
+      previous.topRatedMoviesState != current.topRatedMoviesState,
       builder: (context, state) {
+        print("###top rated bloc###");
         switch(state.topRatedMoviesState) {
           case RequestState.loading:
           // Replace CircularProgressIndicator with Shimmer
