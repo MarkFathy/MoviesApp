@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:movies/movies/presentation/screens/movies_screen.dart';
+import 'package:movies/movies/presentation/screens/see_more_popular_screen.dart';
 
 import 'core/services/services_locator.dart';
 
@@ -16,7 +17,8 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return const MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: MainMoviesScreen(),
+      //home:SeeMorePopularScreen()
+       home: MainMoviesScreen(),
     );
   }
 }

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:movies/movies/presentation/controllers/movies_bloc.dart';
+import 'package:movies/movies/presentation/screens/see_more_popular_screen.dart';
 
 import '../../../core/services/services_locator.dart';
 import '../components/now_playing_component.dart';
@@ -41,7 +42,10 @@ class MainMoviesScreen extends StatelessWidget {
                     ),
                     InkWell(
                       onTap: () {
-                        /// TODO : NAVIGATION TO POPULAR SCREEN
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(builder: (context) => const SeeMorePopularScreen()),
+                        );
                       },
                       child: const Padding(
                         padding: EdgeInsets.all(8.0),
