@@ -8,13 +8,13 @@ import '../../../core/network/api_const.dart';
 import '../../../core/services/services_locator.dart';
 import 'movie_detail_screen.dart';
 
-class SeeMorePopularScreen extends StatelessWidget {
-  const SeeMorePopularScreen({super.key});
+class SeeMoreTopRatedScreen extends StatelessWidget {
+  const SeeMoreTopRatedScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => getIt<MoviesBloc>()..add(GetPopularMoviesEvent())
+      create: (context) => getIt<MoviesBloc>()..add(GetTopRatedMoviesEvent())
       ,
       child: Scaffold(
         body: CustomScrollView(
@@ -23,7 +23,7 @@ class SeeMorePopularScreen extends StatelessWidget {
               pinned: false, // AppBar will disappear when scrolling down
               floating: false, // AppBar will reappear as soon as you scroll up
               //snap: true, // Makes the app bar snap into place
-              title: Text('Popular Movies'.toUpperCase(),
+              title: Text('Top Rated Movies'.toUpperCase(),
                   style: const TextStyle(
                     fontSize: 18.0,
                     fontWeight: FontWeight.w500,
@@ -38,7 +38,7 @@ class SeeMorePopularScreen extends StatelessWidget {
             ),
             SliverPadding(
               padding: const EdgeInsets.fromLTRB(16.0, 0.0, 16.0, 24.0),
-              sliver: _seeMorePopularMovies(),
+              sliver: _seeMoreTopRatedMovies(),
             ),
 
           ],
@@ -48,21 +48,22 @@ class SeeMorePopularScreen extends StatelessWidget {
   }
 }
 
-Widget _seeMorePopularMovies() {
+Widget _seeMoreTopRatedMovies() {
   return BlocBuilder<MoviesBloc, MoviesState>(
     builder: (context, state) {
       return SliverList(
         delegate: SliverChildBuilderDelegate(
               (context, index) {
-            final movie = state.popularMovies[index];
+            final movie = state.topRatedMovies[index];
             return GestureDetector(
-              onTap: () {
+              onTap: (){
                 Navigator.push(
                   context,
                   MaterialPageRoute(
                     builder: (context) => MovieDetailScreen(id: movie.id),
                   ),
-                );              },
+                );
+              },
               child: FadeInUp(
                 from: 20,
                 duration: const Duration(milliseconds: 500),
@@ -74,7 +75,7 @@ Widget _seeMorePopularMovies() {
                       ClipRRect(
                         borderRadius: const BorderRadius.all(Radius.circular(4.0)),
                         child: CachedNetworkImage(
-                          imageUrl: ApiConst.imageUrl(movie.backdropPath!),
+                          imageUrl: ApiConst.imageUrl(movie.backdropPath),
                           placeholder: (context, url) => Shimmer.fromColors(
                             baseColor: Colors.grey[850]!,
                             highlightColor: Colors.grey[800]!,
@@ -108,7 +109,7 @@ Widget _seeMorePopularMovies() {
                             const SizedBox(height: 8.0),
                             Row(
                               children: [
-                                Icon(Icons.star, size: 16.0,color: Colors.yellow[700],),
+                                 Icon(Icons.star, size: 16.0,color: Colors.yellow[700],),
                                 Text(
                                   ' ${(movie.voteAverage / 2).toStringAsFixed(1)} ',
                                   style: const TextStyle(
@@ -138,7 +139,7 @@ Widget _seeMorePopularMovies() {
               ),
             );
           },
-          childCount: state.popularMovies.length,
+          childCount: state.topRatedMovies.length,
         ),
       );
     },

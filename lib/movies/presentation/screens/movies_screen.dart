@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:movies/movies/presentation/controllers/movies_bloc.dart';
 import 'package:movies/movies/presentation/screens/see_more_popular_screen.dart';
+import 'package:movies/movies/presentation/screens/see_more_top_rated.dart';
 
 import '../../../core/services/services_locator.dart';
 import '../components/now_playing_component.dart';
@@ -84,8 +85,10 @@ class MainMoviesScreen extends StatelessWidget {
                     ),
                     InkWell(
                       onTap: () {
-                        /// TODO : NAVIGATION TO Top Rated Movies Screen
-                      },
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(builder: (context) => const SeeMoreTopRatedScreen()),
+                        );                      },
                       child: const Padding(
                         padding: EdgeInsets.all(8.0),
                         child: Row(
